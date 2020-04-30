@@ -27,9 +27,8 @@ We have two independent repositories here, to simulate an development environmen
 
   - account-api (provier) https://github.com/vinirib/pact-provider-sample
 
-To make the automation were you can see on the picture the steps are:
-
- - When you up jenkins in docker, automatically will create the necessary jobs, will be tree steps.
+To make the automation were you can see on the picture the steps are.
+ When you up jenkins in docker, automatically will create the necessary jobs, will be tree steps.
 
  1 - Jenkins will download repository and run a custom jenkins file to package maven project and generate contracts, this contracts will be send to the pact broker.
 
@@ -37,4 +36,3 @@ To make the automation were you can see on the picture the steps are:
 
  3 -  If the previous job is successful, Jenkins will call the last job can-i-deploy, this is a pact tool that will verify if this integration is ok, if all responses is ok, you will see all jobs result OK in jenkins after all.
 
- 
