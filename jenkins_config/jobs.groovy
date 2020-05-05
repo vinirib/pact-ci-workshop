@@ -29,7 +29,7 @@ pipelineJob("2-PACT-FLOW-PROVIDER-TEST-CONTRACT-client-api") {
                     remote {
                         url(providerUrl)
                     }
-                    branch('master')
+                    branch('feature/endpoint-improvements')
                     extensions {}
                 }
             }
