@@ -55,6 +55,7 @@ On this repository we will see tree scenarios, on this scenarios we will describ
 
 
 ### First Scenario
+[Branch Master] (https://github.com/vinirib/pact-ci-workshop#Scenarios)
 
 On this first scenario we have the basic flow. Consumer created an code to make the integration call, and created the consumer contract test with Pact framework, but, in this case, we have some jenkinsfile on consumer repository to run CI events to run the tests, generate contract and publish on our Pact Broker (in container).
 
@@ -66,11 +67,15 @@ If all works done, the final job will trigger another jenkinsfile to run can-i-d
 
 ### Second Scenario
 
+[Branch feature/provider-changed-contract] (https://github.com/vinirib/pact-ci-workshop/tree/feature/provider-changed-contract)
+
 The second scenario, provider was maked some changes on the endpoint of consumer call (without advice), when they trigger CI, the pact contracts will be break
 
 ![Pact Second Scenario](imgs/PACT-SECOND-SCENARIO.png)
 
 ### Third Scenario
+
+[Branch feature/consumer-make-some-changes] (https://github.com/vinirib/pact-ci-workshop/tree/feature/consumer-make-some-changes)
 
 The third scenario, consumer was maked some improvements and trigger CI to see if have some changes on integration, but, for our suprise, provider makes some change again withou advice and CI will break again
 
