@@ -9,6 +9,24 @@ This repository is an example to how implement PACT consumer driver contract and
  - Postgresql
  - Pact Broker
 
+ Table of contents
+=================
+
+<!--ts-->
+   * [Pact concept](#Pact-concept)
+   * [Pact Workflow](#Pact-Workflow)
+   * [Scenarios](#Scenarios)
+      * [First Scenario](#First-Scenario)
+      * [Local files](#local-files)
+      * [Remote files](#remote-files)
+      * [Multiple files](#multiple-files)
+      * [Combo](#combo)
+      * [Auto insert and update TOC](#auto-insert-and-update-toc)
+      * [GitHub token](#github-token)
+   * [Tests](#tests)
+   * [Dependency](#dependency)
+<!--te-->
+
 ## Pact concept
 
 Pact is a code-first tool for testing HTTP and message integrations using contract tests. Contract tests assert that inter-application messages conform to a shared understanding that is documented in a contract. Without contract testing, the only way to ensure that applications will work correctly together is by using expensive and brittle integration tests.
@@ -35,4 +53,31 @@ To make the automation were you can see on the picture the steps are.
  2 - If the previous job is successful, this second job will be called, and call the provider repository, download and run junit tests where junit tests will be validate contracts.
 
  3 -  If the previous job is successful, Jenkins will call the last job can-i-deploy, this is a pact tool that will verify if this integration is ok, if all responses is ok, you will see all jobs result OK in jenkins after all.
+
+## Scenarios
+
+On this repository we will see tree scenarios, on this scenarios we will describe the most common interactions you can combine with Pact Broker and Jenkins with your contract integration tests.
+
+
+### First Scenario
+
+On this first scenario we have the basic flow. Consumer created an code to make the integration call, and created the consumer contract test with Pact framework, but, in this case, we have some jenkinsfile on consumer repository to run CI events to run the tests, generate contract and publish on our Pact Broker (in container).
+
+Next, if this Jenkins stage was done successful, we will call the next job, this will run provider junit tests and see if the contract integration was right (by provider side).
+
+If all works done, the final job will trigger another jenkinsfile to run can-i-deploy to see if this integration result was successful or failed.
+
+![Pact First Scenario](imgs/PACT-FIRST-SCENARIO.png)
+
+### Second Scenario
+
+The second scenario, provider was maked some changes on the endpoint of consumer call (without advice), when they trigger CI, the pact contracts will be break
+
+![Pact Second Scenario](imgs/PACT-SECOND-SCENARIO.png)
+
+### Third Scenario
+
+The third scenario, consumer was maked some improvements and trigger CI to see if have some changes on integration, but, for our suprise, provider makes some change again withou advice and CI will break again
+
+
 
