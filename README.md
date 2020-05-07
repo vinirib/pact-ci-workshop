@@ -17,14 +17,9 @@ This repository is an example to how implement PACT consumer driver contract and
    * [Pact Workflow](#Pact-Workflow)
    * [Scenarios](#Scenarios)
       * [First Scenario](#First-Scenario)
-      * [Local files](#local-files)
-      * [Remote files](#remote-files)
-      * [Multiple files](#multiple-files)
-      * [Combo](#combo)
-      * [Auto insert and update TOC](#auto-insert-and-update-toc)
-      * [GitHub token](#github-token)
-   * [Tests](#tests)
-   * [Dependency](#dependency)
+      * [Second Scenario](#Second-Scenario)
+      * [Third Scenario](#Third-Scenario)
+
 <!--te-->
 
 ## Pact concept
