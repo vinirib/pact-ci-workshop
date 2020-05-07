@@ -38,7 +38,7 @@ We have two independent repositories here, to simulate an development environmen
 
  - client-api (consumer) https://github.com/vinirib/pact-consumer-sample
 
-  - account-api (provier) https://github.com/vinirib/pact-provider-sample
+  - account-api (provider) https://github.com/vinirib/pact-provider-sample
 
 To make the automation were you can see on the picture the steps are.
  When you up jenkins in docker, automatically will create the necessary jobs, will be tree steps.
