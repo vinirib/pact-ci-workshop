@@ -1,7 +1,7 @@
 # PACT CI WORKSHOP
 ![Pact Logo](imgs/pact-logo.PNG)
 
-This repository is an example to how implement PACT consumer driver contract and automatically verify if any integration is broken.
+This repository is an example of how to implement PACT consumer driver contract and automatically verify if any integration is broken.
 
 ## Tools Used
 
@@ -34,34 +34,34 @@ Do you set your house on fire to test your smoke alarm? No, you test the contrac
 
 ![Pact Logo](imgs/PACT-CI-WORKSHOP.png)
 
-We have two independent repositories here, to simulate an development environment, this two repositories can be found on my github.
+We have two independent repositories here, to simulate a development environment, these two repositories can be found on my Github.
 
  - client-api (consumer) https://github.com/vinirib/pact-consumer-sample
 
   - account-api (provider) https://github.com/vinirib/pact-provider-sample
 
-To make the automation were you can see on the picture the steps are.
- When you up jenkins in docker, automatically will create the necessary jobs, will be tree steps.
+To make the automation where you can see on the picture the steps are.
+ When you up Jenkins in Docker, automatically will create the necessary jobs, will be tree steps.
 
- 1 - Jenkins will download repository and run a custom jenkins file to package maven project and generate contracts, this contracts will be send to the pact broker.
+ 1 - Jenkins will download repository and run a custom Jenkins file to package maven project and generate contracts, these contracts will be sent to the pact broker.
 
- 2 - If the previous job is successful, this second job will be called, and call the provider repository, download and run junit tests where junit tests will be validate contracts.
+ 2 - If the previous job is successful, this second job will be called, and call the provider repository, download and run JUnit tests where JUnit tests will be validated contracts.
 
- 3 -  If the previous job is successful, Jenkins will call the last job can-i-deploy, this is a pact tool that will verify if this integration is ok, if all responses is ok, you will see all jobs result OK in jenkins after all.
+ 3 -  If the previous job is successful, Jenkins will call the last job can-i-deploy, this is a pact tool that will verify if this integration is ok, if all responses are ok, you will see all jobs result OK in Jenkins after all.
 
 ## Scenarios
 
-On this repository we will see tree scenarios, on this scenarios we will describe the most common interactions you can combine with Pact Broker and Jenkins with your contract integration tests.
+On this repository, we will see tree scenarios, on this scenarios we will describe the most common interactions you can combine with Pact Broker and Jenkins with your contract integration tests.
 
 
 ### First Scenario
 [Branch Master] (https://github.com/vinirib/pact-ci-workshop#Scenarios)
 
-On this first scenario we have the basic flow. Consumer created an code to make the integration call, and created the consumer contract test with Pact framework, but, in this case, we have some jenkinsfile on consumer repository to run CI events to run the tests, generate contract and publish on our Pact Broker (in container).
+In this first scenario we have the basic flow. Consumer created a code to make the integration call, and created the consumer contract test with the Pact framework, but, in this case, we have some Jenkins file on consumer repository to run CI events to run the tests, generate a contract and publish on our Pact Broker (in a container).
 
-Next, if this Jenkins stage was done successful, we will call the next job, this will run provider junit tests and see if the contract integration was right (by provider side).
+Next, if this Jenkins stage was done successfully, we will call the next job, this will run provider JUnit tests and see if the contract integration was right (by provider side).
 
-If all works done, the final job will trigger another jenkinsfile to run can-i-deploy to see if this integration result was successful or failed.
+If all works done, the final job will trigger another Jenkins file to run can-i-deploy to see if this integration result was successful or failed.
 
 ![Pact First Scenario](imgs/PACT-FIRST-SCENARIO.png)
 
@@ -69,7 +69,7 @@ If all works done, the final job will trigger another jenkinsfile to run can-i-d
 
 [Branch feature/provider-changed-contract] (https://github.com/vinirib/pact-ci-workshop/tree/feature/provider-changed-contract)
 
-The second scenario, provider was maked some changes on the endpoint of consumer call (without advice), when they trigger CI, the pact contracts will be break
+The second scenario, provider was made some changes on the endpoint of consumer call (without advice), when they trigger CI, the pact contracts will be break
 
 ![Pact Second Scenario](imgs/PACT-SECOND-SCENARIO.png)
 
@@ -77,7 +77,7 @@ The second scenario, provider was maked some changes on the endpoint of consumer
 
 [Branch feature/consumer-make-some-changes] (https://github.com/vinirib/pact-ci-workshop/tree/feature/consumer-make-some-changes)
 
-The third scenario, consumer was maked some improvements and trigger CI to see if have some changes on integration, but, for our suprise, provider makes some change again withou advice and CI will break again
+The third scenario, the consumer was made some improvements and trigger CI to see if have some changes on integration, but, for our surprise, the provider makes some change again without advice and CI will break again
 
 
-
+![Pact Third Scenario](imgs/PACT-THIRD-SCENARIO.png)
