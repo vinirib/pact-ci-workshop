@@ -19,7 +19,8 @@ This repository is an example of how to implement PACT consumer driver contract 
       * [First Scenario](#First-Scenario)
       * [Second Scenario](#Second-Scenario)
       * [Third Scenario](#Third-Scenario)
-
+   * [Observations](#Observations)
+   * [Pact Docs](#Pact-Docs)
 <!--te-->
 
 ## Pact concept
@@ -88,9 +89,9 @@ The third scenario, the consumer was made some improvements and trigger CI to se
 
 ## Observations
 
-If you look at scenarios design, you will see different branches by the sides, this is an idea to make it work on PACT, your team and another team have to combine what branch you will check the integration before delivery in prodution.
+If you look at scenarios design, you will see different branches by the sides, this is an idea to make it work on PACT, your team and another team have to combine what branch you will check the integration before delivery in production.
 
-On JenkinsFile, when consumer and provider makes check is a good practice hash version with some hashcode, in our case we used git commit hash (an jenkins environment), and used tags too for find last version more easy. This practice can be found on pact documentation.
+On JenkinsFile, when consumer and provider make check is a good practice hash version with some hashcode, in our case we used git commit hash (an jenkins environment), and used tags too to find last version easier. This practice can be found on pact documentation.
 
 ### Pact Docs
 
