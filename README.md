@@ -45,6 +45,11 @@ This is Jenkins Dashboard with CI Jobs interconected.
 
 ![Jenkins Dashboard](imgs/Jenkins-dashboard.png)
 
+
+user:admin
+
+pass:admin
+
 To make the automation where you can see on the picture the steps are.
  When you up Jenkins in Docker, automatically will create the necessary jobs, will be tree steps.
 
