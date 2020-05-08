@@ -40,6 +40,10 @@ We have two independent repositories here, to simulate a development environment
 
   - account-api (provider) https://github.com/vinirib/pact-provider-sample
 
+This is Jenkins Dashboard with CI Jobs interconected.
+
+![Jenkins Dashboard](imgs/Jenkins-dashboard.png)
+
 To make the automation where you can see on the picture the steps are.
  When you up Jenkins in Docker, automatically will create the necessary jobs, will be tree steps.
 
