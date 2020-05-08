@@ -85,3 +85,21 @@ The third scenario, the consumer was made some improvements and trigger CI to se
 
 
 ![Pact Third Scenario](imgs/PACT-THIRD-SCENARIO.png)
+
+## Observations
+
+If you look at scenarios design, you will see different branches by the sides, this is an idea to make it work on PACT, your team and another team have to combine what branch you will check the integration before delivery in prodution.
+
+On JenkinsFile, when consumer and provider makes check is a good practice hash version with some hashcode, in our case we used git commit hash (an jenkins environment), and used tags too for find last version more easy. This practice can be found on pact documentation.
+
+### Pact Docs
+
+[Pact Example Animation](https://pactflow.io/how-pact-works/?utm_source=ossdocs&utm_campaign=intro_animation#slide-1)
+
+[Versioning Pact Number](https://docs.pact.io/getting_started/versioning_in_the_pact_broker)
+
+[Pact Nirvana](https://docs.pact.io/pact_nirvana)
+
+[Webhooks](https://github.com/pact-foundation/pact_broker/wiki/Webhooks)
+
+[Badges on README](https://github.com/pact-foundation/pact_broker/wiki/Provider-verification-badges)
