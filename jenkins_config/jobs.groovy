@@ -3,7 +3,7 @@ def providerUrl = 'https://github.com/vinirib/pact-provider-sample'
 def consumerAppName = 'client-api'
 def providerAppName = 'account-api'
 
-pipelineJob("1-PACT-FLOW-PROVIDER-TEST-CONTRACT-client-api") {
+pipelineJob("1-PACT-FLOW-PROVIDER-TEST-CONTRACT-account-api") {
     definition {
         cpsScm {
             scm {
