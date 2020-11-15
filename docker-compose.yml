@@ -16,6 +16,22 @@ services:
             - "$HOME/.m2:/var/jenkins_home/.m2:rw"
         networks: 
             - "pact"
+
+    dind:
+        image: docker:18.06.3-ce-dind
+        restart: always
+        privileged: true
+        expose:
+            - 2375
+            - 2376
+        volumes:
+            - docker_lib:/var/lib/docker
+            - cache:/cache
+            - builds:/builds
+        environment:
+            DOCKER_TLS_CERTDIR: ""
+        networks: 
+            - "pact"
             
     postgres:
         image: postgres:10.5
@@ -47,3 +63,7 @@ services:
 
 networks: 
     pact:
+volumes: 
+    docker_lib:
+    cache:
+    builds:

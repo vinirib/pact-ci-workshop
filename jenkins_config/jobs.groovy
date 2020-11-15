@@ -2,6 +2,7 @@ def consumerUrl = 'https://github.com/vinirib/pact-consumer-sample'
 def providerUrl = 'https://github.com/vinirib/pact-provider-sample'
 def consumerAppName = 'client-api'
 def providerAppName = 'account-api'
+def branch = 'feature-docker-pipeline'
 
 pipelineJob("1-PACT-FLOW-CONSUMER-GENERATE-AND-PUBLISH-CONTRACT") {
     definition {
@@ -11,7 +12,7 @@ pipelineJob("1-PACT-FLOW-CONSUMER-GENERATE-AND-PUBLISH-CONTRACT") {
                     remote {
                         url(consumerUrl)
                     }
-                    branch('master')
+                    branch(branch)
                     extensions {}
                 }
             }
@@ -29,7 +30,7 @@ pipelineJob("2-PACT-FLOW-PROVIDER-TEST-CONTRACT-client-api") {
                     remote {
                         url(providerUrl)
                     }
-                    branch('master')
+                    branch(branch)
                     extensions {}
                 }
             }
@@ -46,7 +47,7 @@ pipelineJob("3-PACT-FLOW-CONSUMER-CAN-I-DEPLOY") {
                     remote {
                         url(consumerUrl)
                     }
-                    branch('master')
+                    branch(branch)
                     extensions {}
                 }
             }
@@ -63,7 +64,7 @@ pipelineJob("PROVIDER-CHANGED-CONTRACT-CHECK-INTEGRATION") {
                     remote {
                         url(providerUrl)
                     }
-                    branch('master')
+                    branch(branch)
                     extensions {}
                 }
             }
