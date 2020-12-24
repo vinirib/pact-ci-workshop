@@ -1,6 +1,7 @@
-version: '3.3'
+version: '3.7'
 
 services:
+
     jenkins:
         build:
             context: ./jenkins_config
@@ -8,62 +9,38 @@ services:
         image: jenkins-pact-ci
         container_name: jenkins-pact-ci
         restart: always
-        ports:
-            - '8080:8080'
-            - '50000:50000'
-        volumes:
-            - "./jenkins_home:/var/jenkins_home"
-            - "$HOME/.m2:/var/jenkins_home/.m2:rw"
-        networks: 
-            - "pact"
-
-    dind:
-        image: docker:18.06.3-ce-dind
-        restart: always
-        privileged: true
         expose:
-            - 2375
-            - 2376
+            - 8080
+            - 50000
         volumes:
-            - docker_lib:/var/lib/docker
-            - cache:/cache
-            - builds:/builds
+            - "/var/run/docker.sock:/var/run/docker.sock:rw"
         environment:
-            DOCKER_TLS_CERTDIR: ""
-        networks: 
-            - "pact"
-            
+            PLUGINS_FORCE_UPGRADE: "true"
+        network_mode: "host"    
+
     postgres:
-        image: postgres:10.5
-        healthcheck:
-            test: psql postgres --command "select 1" -U postgres
-        ports:
-            - "5432:5432"
+        image: postgres:12.4-alpine
+        restart: unless-stopped
+        expose:
+            - 5432
         environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: password
             POSTGRES_DB: postgres
-        networks: 
-            - "pact"
-    
+        network_mode: "host"   
+
     pact_broker:
-        image: dius/pact-broker:2.27.2-1
-        ports:
-            - "80:80"
-        links:
+        image: pactfoundation/pact-broker:2.73.0.0
+        container_name: pact_broker
+        expose:
+            - 9292
+        depends_on:
             - postgres
         environment:
             PACT_BROKER_DATABASE_USERNAME: postgres
             PACT_BROKER_DATABASE_PASSWORD: password
-            PACT_BROKER_DATABASE_HOST: postgres
+            PACT_BROKER_DATABASE_HOST: localhost
             PACT_BROKER_DATABASE_NAME: postgres
             PACT_BROKER_WEBHOOK_SCHEME_WHITELIST: http https
-        networks: 
-            - "pact"
-
-networks: 
-    pact:
-volumes: 
-    docker_lib:
-    cache:
-    builds:
+            PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: 5
+        network_mode: "host"  
