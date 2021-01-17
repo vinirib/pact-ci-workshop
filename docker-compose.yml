@@ -11,16 +11,14 @@ services:
         ports:
             - '8080:8080'
             - '50000:50000'
-        volumes:
-            - "./jenkins_home:/var/jenkins_home"
-            - "$HOME/.m2:/var/jenkins_home/.m2:rw"
+        environment:
+            PLUGINS_FORCE_UPGRADE: "true"
         networks: 
             - "pact"
             
     postgres:
-        image: postgres:10.5
-        healthcheck:
-            test: psql postgres --command "select 1" -U postgres
+        image: postgres:12.4-alpine
+        restart: always
         ports:
             - "5432:5432"
         environment:
@@ -31,17 +29,22 @@ services:
             - "pact"
     
     pact_broker:
-        image: dius/pact-broker:2.27.2-1
+        image: pactfoundation/pact-broker:2.73.0.0
+        restart: always
+        container_name: pact_broker
         ports:
             - "80:80"
         links:
+            - jenkins
             - postgres
         environment:
             PACT_BROKER_DATABASE_USERNAME: postgres
             PACT_BROKER_DATABASE_PASSWORD: password
             PACT_BROKER_DATABASE_HOST: postgres
             PACT_BROKER_DATABASE_NAME: postgres
-            PACT_BROKER_WEBHOOK_SCHEME_WHITELIST: http https
+            PACT_BROKER_PORT: 80
+            PACT_BROKER_WEBHOOK_SCHEME_WHITELIST: http 
+            PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: 5
         networks: 
             - "pact"
 
